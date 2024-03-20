@@ -1,8 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useState } from 'react'
+import loginbg from '../loginbg.jpg'
 
 const SignUp = () => {
+  const {price} = useParams()
   const [FormData, setData] = useState({
     firstname: "",
    lastname: "",
@@ -40,12 +42,13 @@ const SignUp = () => {
     })
       .then((response) => {
         console.log("Data received " + response);
+        alert("Register successfully")
       })
 
     }
   }
   const bg = {
-    backgroundImage:`linear-gradient(rgba(248, 247, 247, 0.3),rgba(248, 247, 247, 0.7)), url('./Images/loginbg.jpg')`, 
+    backgroundImage:`linear-gradient(rgba(248, 247, 247, 0.3),rgba(248, 247, 247, 0.7)), url(${loginbg})`, 
     backgroundSize: 'cover',
     backgroundPosition: 'center'
   }
@@ -70,7 +73,7 @@ const SignUp = () => {
     <div style={bg}>
         {/* <img className='position-relative' src='./Images/signup3.jpg' height="700vh" width="100%" /> */}
         <div className='p-2 m-2 d-flex align-items-center justify-content-center text-center' style={{height : '620px'}}>
-        <form className='p-2 m-2' onSubmit={handleSubmit} style={content}>
+        <div className='p-2 m-2' style={content}>
           <br></br>
         <div><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" style={{color:'#0077B6'}} fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
@@ -83,9 +86,9 @@ const SignUp = () => {
           <p style={m1}>City : <input type='text' placeholder='enter your city' name='city' value={FormData.city} onChange={handleChange}/></p> 
           <p style={m1}>Password : <input type='password' placeholder='enter your password' name='password' value={FormData.password} onChange={handleChange} required/></p>
             {/* <p>Re-enter Password : <input type='password' placeholder='re-enter your password' required/></p> */}
-            <p  style={m1}>Already have an account? : <Link to="/login">Login</Link></p>
-            <button>SignUp</button>
-        </form>
+            <p  style={m1}>Already have an account? : <Link to={`/login/${price}`}>Login</Link></p>
+            <button onClick={handleSubmit}>SignUp</button>
+        </div>
         </div>
 
         </div>

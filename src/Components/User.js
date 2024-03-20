@@ -1,9 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Navbar } from 'react-bootstrap'
+import { Button, Navbar } from 'react-bootstrap'
 import NavBar from './NavBar';
-import axios from 'axios';
 import { Carousel } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import AboutUs from './AboutUs';
+import Footer from './Footer';
+// import Footer from './Footer';
 
 const User = () => {
   const [formData, setFormData] = useState(null)
@@ -20,12 +23,6 @@ const User = () => {
       })
       .then((data) => {
 
-        if(data.categoryname == 'Sofas&Seating'){
-        console.log("Data", data)
-        
-        }else{
-          console.log("Sofas")
-        }
         setFormData(data)
       })
       .catch((error) => {
@@ -43,86 +40,83 @@ const User = () => {
     <NavBar />
 {/* Starting Carousel */}
 <br></br>
-<Carousel >
-      <Carousel.Item>
-        <img style={{height :'300px'}}
-          className="d-block w-100"
-          src="https://via.placeholder.com/800x400"
-          alt="First slide"
-        />
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img style={{height :'300px'}}
-          className="d-block w-100"
-          src="https://via.placeholder.com/800x400"
-          alt="Second slide"
-        />
-        <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-        style={{height :'300px'}}
-          className="d-block w-100"
-          src="https://via.placeholder.com/800x400"
-          alt="Third slide"
-        />
-        <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-        style={{height :'300px'}}
-          className="d-block w-100"
-          src="https://via.placeholder.com/800x400"
-          alt="Third slide"
-        />
-        <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-    </Carousel>
+<div className='container'>
 
-<br></br>
-    <div className="container">
-      <h1>Furniture</h1>
-      <div className='row gy-4'>
-      {Array.isArray(formData) && formData.map((formData) => (
-      <div className="card col-4 p-3">
-        <img src={`http://localhost:8080/uploads/${formData.image}`} className="card-img-top w-100 h-50" alt="Image not Found!" />
-          <div className="card-body">
-            <h5 className="card-title">{formData.productname}</h5>
-            <p className="card-text">{formData.description}</p>
-            <div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill text-danger" viewBox="0 0 16 16">
-  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-</svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill text-danger" viewBox="0 0 16 16">
-  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-</svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill text-danger" viewBox="0 0 16 16">
-  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-</svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill text-danger" viewBox="0 0 16 16">
-  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-</svg><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-star-fill text-danger" viewBox="0 0 16 16">
-  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-</svg></div>
-            <div>Today's Deal</div>
-            <div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-currency-rupee" viewBox="0 0 16 16">
-  <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z"/>
-</svg>{formData.price}</div><br></br>
-            <a href="#" className="btn btn-primary">Add to Cart</a>
-          </div>
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="5000">
+      <img src="./Images/Car1.jpg" class="d-block w-100" alt="..." style={{height : "350px", filter: 'brightness(40%)'}}/>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Furniture</h5>
+        <p>"Graceful Living, Graceful Furniture"</p>
       </div>
-     ))}
-     </div>
     </div>
+    <div class="carousel-item"  data-bs-interval="5000">
+      <img src="./Images/Car2.jpg" class="d-block w-100" alt="..." style={{height : "350px", filter: 'brightness(40%)'}}/>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Sofas and Seatings</h5>
+        <p>"Discover Comfort, Discover Home"</p>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="5000">
+      <img src="./Images/Car3.jpg" class="d-block w-100" alt="..." style={{height : "350px", filter: 'brightness(40%)'}}/>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Lamps and Lightings</h5>
+        <p>"Brighter moments on a darker night"</p>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="5000">
+      <img src="./Images/Car4.jpg" class="d-block w-100" alt="..." style={{height : "350px", filter: 'brightness(40%)'}}/>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Home Decor</h5>
+        <p>"Your Dream Home, Our Passion"</p>
+      </div>
+    </div>
+  </div>
+</div>
+   </div>
+
+   <AboutUs />
+<br></br>
+
+<div className='container'>
+  <br></br><br></br>
+  <h1 className="text-center" style={{fontSize : '32px', color: '#84cdee', fontWeight:'bold'}}><font style={{color : "black"}}>C</font>ategories</h1>
+  <br></br>
+      <div className="container row">
+       
+       <div className='col-3'>
+        <Link to="/furniture/Furniture"><img src='./Images/FurW.webp' style={{height: "200px", width : "250px", borderRadius : '50px'}}/></Link>
+        <div className='text-center' style={{color : '#84cdee', fontSize : '20px', fontWeight : 'bold'}}>Furnitures</div>
+        </div> 
+        <div className='col-3'>
+        <Link to="/sofa/Sofas&Seating"  className='col-3'><img src='./Images/SofaW.webp' style={{height: "200px", width : "250px", borderRadius : '50px'}}/></Link>
+        <div className='text-center' style={{color : '#84cdee', fontSize : '20px', fontWeight : 'bold'}}>Sofas</div>
+        </div>
+        <div className='col-3'>
+        <Link to="/home/HomeDecor" className='col-3'><img src='./Images/HomeW.jpg' style={{height: "200px", width : "250px", borderRadius : '50px'}}/></Link>
+        <div className='text-center' style={{color : '#84cdee', fontSize : '20px', fontWeight : 'bold'}}>Home Decors</div>
+        </div>
+        <div className='col-3'>
+        <Link to="/kitchen/Lamps&Lightings" className='col-3'><img src='./Images/LampW.webp' style={{height: "200px", width : "270px", borderRadius : '50px'}}/></Link>
+        <div className='text-center' style={{color : '#84cdee', fontSize : '20px', fontWeight : 'bold'}}>Lamps And Lightings</div>
+        </div>
+
+        </div>
+      <br></br>
+    </div>
+    <div id='contact'></div>
+    <br></br> <br></br>
+    <hr />
+     
+    {/* <Footer /> */}
+    <Footer />
     </div>
   )
 }

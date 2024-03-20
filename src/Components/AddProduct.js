@@ -10,14 +10,14 @@ export const AddProduct = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedImage, setSelectedImage] = useState();
-  // const [category, setCategory] = useState();
 
 
+  //Upload an image
   const handleFile = () => {
     console.log("hello world")
     const formData = new FormData();
     formData.append("file", selectedImage);
-
+    console.log("Hello")
     fetch("http://localhost:8080/file/upload", {
       method: 'POST',
       body: formData,
@@ -31,8 +31,8 @@ export const AddProduct = () => {
       })
   }
 
+  
   //Add Products
-
   const [formData, setData] = useState({
     productname: "",
     description: "",
@@ -48,7 +48,6 @@ export const AddProduct = () => {
     console.log(name, value);
   }
   const handleSubmit = (event) => {
-    // event.preventDefault();
     console.log(formData);
     if (formData.productname && formData.description && formData.price == '') {
       console.log("Noooo")
@@ -76,6 +75,8 @@ export const AddProduct = () => {
     }
     alert("Product Added");
   }
+
+  //Fetch Category
   const fetchdata = () => {
     axios.get("http://localhost:8080/shop/getcategory")
       .then((res) => {
@@ -86,6 +87,7 @@ export const AddProduct = () => {
     fetchdata()
   }, []);
 
+  //To get a category
   const handleSelectChange = (event) => {
     console.log("Selected Category ====>" + selectedCategory)
     setSelectedCategory(event.target.value);
@@ -120,8 +122,6 @@ export const AddProduct = () => {
               </option>
             ))}
           </select>
-          {/* : <div>Hello</div>
-          }    */}
         </p>
         <input
           type="file"
